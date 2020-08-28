@@ -3,6 +3,7 @@ import Note from "./components/Note";
 
 const App = (props) => {
   const [notes, setNotes] = useState(props.notes);
+  const [newNote, setNewNote] = useState("a new note");
   console.log(notes);
   notes.forEach((element) => {
     console.log(element.id, element);
@@ -10,7 +11,16 @@ const App = (props) => {
 
   const addNote = (event) => {
     event.preventDefault();
-    console.log("button clicked", event.target, event, event.type);
+    let allNotes = [...notes];
+    allNotes.push({ id: notes.length + 1, content: newNote });
+    setNotes(allNotes);
+  };
+
+  //   In order to enable editing of the input element, we have to register an event handler that synchronizes the changes made to the input with the component's state:
+
+  const handleEvent = (event) => {
+    console.log(event.target.value);
+    setNewNote(event.target.value);
   };
 
   return (
@@ -22,7 +32,7 @@ const App = (props) => {
         ))}
       </ul>
       <form onSubmit={addNote}>
-        <input></input>
+        <input value={newNote} onChange={handleEvent}></input>
         <button type="submit">Add</button>
       </form>
     </div>
