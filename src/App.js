@@ -11,12 +11,16 @@ const App = (props) => {
   const addNote = (event) => {
     event.preventDefault();
     let allNotes = [...notes];
-    allNotes.push({
+    const myNewNote = {
       id: notes.length + 1,
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
-    });
+    };
+    if (myNewNote.content.trim() == "") {
+      return;
+    }
+    allNotes.push(myNewNote);
     //show the new state of all notes
     setNotes(allNotes);
     //update state of input to blank.
