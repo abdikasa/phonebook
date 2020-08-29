@@ -2,10 +2,21 @@ import React, { useState } from "react";
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: "Arto Hellas", phone: "4561231456" },
+    { name: "Arto Hellas", phone: "040-123456" },
+    { name: "Ada Lovelace", phone: "39-44-5323523" },
+    { name: "Dan Abramov", phone: "12-43-234345" },
+    { name: "Mary Poppendieck", phone: "39-23-6423122" },
   ]);
   const [newName, setNewName] = useState("");
   const [newPhone, setPhone] = useState("");
+  //create a variable state for the new input.
+  const [filterValue, setFilter] = useState("");
+
+  //use the persons variable, return all or just the filtered names
+  const filterFriends =
+    filterValue.trim() === ""
+      ? persons
+      : persons.filter((person) => person.name.includes(filterValue));
 
   const addName = (event) => {
     event.preventDefault();
@@ -22,7 +33,6 @@ const App = () => {
     }
 
     const newFriend = { name: newName, phone: newPhone };
-    console.log(newFriend);
     setPersons(allFriends.concat(newFriend));
     setNewName("");
     setPhone("");
@@ -32,6 +42,11 @@ const App = () => {
     setNewName(event.target.value);
   };
 
+  //update the filterFriends after each input change.
+  const filterName = (event) => {
+    setFilter(event.target.value);
+  };
+
   const inputPhone = (event) => {
     setPhone(event.target.value);
   };
@@ -39,6 +54,11 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <div>
+        filter shown with:
+        <input onChange={filterName} value={filterValue} />
+      </div>
+      <h2>add a new</h2>
       <form onSubmit={addName}>
         <div>
           name: <input onChange={inputName} value={newName} />
@@ -52,7 +72,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
-        {persons.map((person, id) => {
+        {filterFriends.map((person, id) => {
           return (
             <li key={id}>
               {person.name}: {person.phone}
