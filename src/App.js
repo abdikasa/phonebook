@@ -7,6 +7,17 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault();
     const allFriends = [...persons];
+    const checkIfExists = () => {
+      return allFriends.every((person) => {
+        return person.name !== newName;
+      });
+    };
+
+    if (!checkIfExists()) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
+
     const newFriend = { name: newName };
     console.log(newFriend);
     setPersons(allFriends.concat(newFriend));
