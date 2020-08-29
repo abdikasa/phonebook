@@ -8,9 +8,12 @@ import App from "./App";
 // Let us start with implementing the addition of a person to phonebook.
 // The newName state is meant for controlling the form input element.
 
-// 2.7: The Phonebook Step2
+// 2.7: The Phonebook Step2 ----FINISHED
 // Prevent the user from being able to add names that already exist in the phonebook. JavaScript arrays have numerous suitable methods for accomplishing this task.
 
 // Issue a warning with the alert command when such an action is attempted:
+
+// 2.8: The Phonebook Step3 ----STARTNG
+// Expand your application by allowing users to add phone numbers to the phone book. You will need to add a second input element to the form (along with its own event handler):
 
 ReactDOM.render(<App />, document.getElementById("root"));
