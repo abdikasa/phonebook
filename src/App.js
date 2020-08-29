@@ -4,10 +4,9 @@ import Note from "./components/Note";
 const App = (props) => {
   const [notes, setNotes] = useState(props.notes);
   const [newNote, setNewNote] = useState("a new note");
-  console.log(notes);
-  notes.forEach((element) => {
-    console.log(element.id, element);
-  });
+  const [filtView, setFiltView] = useState(true);
+
+  const filterNotes = filtView ? notes : notes.filter((note) => note.important);
 
   const addNote = (event) => {
     event.preventDefault();
@@ -18,7 +17,6 @@ const App = (props) => {
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
     });
-
     //show the new state of all notes
     setNotes(allNotes);
     //update state of input to blank.
@@ -37,7 +35,7 @@ const App = (props) => {
     <div>
       <h1>Notes</h1>
       <ul>
-        {notes.map((note) => (
+        {filterNotes.map((note) => (
           <Note key={note.id} note={note} />
         ))}
       </ul>
