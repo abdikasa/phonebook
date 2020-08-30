@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
+import Friends from "./components/Friends";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -51,15 +52,7 @@ const App = () => {
         newPhone={newPhone}
       ></AddForm>
       <h2>Numbers</h2>
-      <ul>
-        {filterFriends.map((person, id) => {
-          return (
-            <li key={id}>
-              {person.name}: {person.phone}
-            </li>
-          );
-        })}
-      </ul>
+      <Friends filterFriends={filterFriends}></Friends>
     </div>
   );
 };
