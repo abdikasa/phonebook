@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import Input from "./Input";
 
-const Filter = ({ value, onChange }) => {
+const Filter = ({ filterValue, setFilter }) => {
+  const filterChange = (event) => setFilter(event.target.value);
+
   return (
-    <div>
-      filter shown with:
-      <input onChange={onChange} value={value} />
-    </div>
+    <Input
+      onChange={filterChange}
+      value={filterValue}
+      label="filter shown with: "
+    ></Input>
   );
 };
 

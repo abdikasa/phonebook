@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
 
 const App = () => {
@@ -10,10 +11,8 @@ const App = () => {
   ]);
   const [newName, setNewName] = useState("");
   const [newPhone, setPhone] = useState("");
-  //create a variable state for the new input.
   const [filterValue, setFilter] = useState("");
 
-  //use the persons variable, return all or just the filtered names
   const filterFriends =
     filterValue.trim() === ""
       ? persons
@@ -39,35 +38,18 @@ const App = () => {
     setPhone("");
   };
 
-  const inputName = (event) => {
-    setNewName(event.target.value);
-  };
-
-  //update the filterFriends after each input change.
-  const filterName = (event) => {
-    setFilter(event.target.value);
-  };
-
-  const inputPhone = (event) => {
-    setPhone(event.target.value);
-  };
-
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter value={filterValue} onChange={filterName}></Filter>
+      <Filter setFilter={setFilter} filterValue={filterValue}></Filter>
       <h2>add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input onChange={inputName} value={newName} />
-        </div>
-        <div>
-          phone: <input onChange={inputPhone} value={newPhone} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddForm
+        addName={addName}
+        setNewName={setNewName}
+        setPhone={setPhone}
+        newName={newName}
+        newPhone={newPhone}
+      ></AddForm>
       <h2>Numbers</h2>
       <ul>
         {filterFriends.map((person, id) => {
