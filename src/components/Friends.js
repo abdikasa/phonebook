@@ -6,7 +6,7 @@ const Friends = ({ filterFriends }) => {
     <ul>
       {filterFriends.map((person, id) => {
         return (
-          <Friend id={id} name={person.name} phone={person.phone}></Friend>
+          <Friend key={id} name={person.name} phone={person.phone}></Friend>
         );
       })}
     </ul>

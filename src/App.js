@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
 import Friends from "./components/Friends";
+import axios from "axios";
+
+const promise = axios.get("http://localhost:3001/");
+console.log(promise);
 
 const App = () => {
   const [persons, setPersons] = useState([
