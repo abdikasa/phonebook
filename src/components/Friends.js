@@ -4,10 +4,9 @@ import Friend from "./Friend";
 const Friends = ({ filterFriends }) => {
   return (
     <ul>
-      {filterFriends.map((person, id) => {
-        return (
-          <Friend key={id} name={person.name} phone={person.phone}></Friend>
-        );
+      {filterFriends.map((person) => {
+        console.log(person);
+        return <Friend person={person}></Friend>;
       })}
     </ul>
   );

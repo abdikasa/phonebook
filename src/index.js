@@ -12,7 +12,6 @@ import App from "./App";
 
 // 2.15: Phonebook step7 --- STARTING
 // Let's return to our phonebook application.
-
 // Currently the numbers that are added to the phonebook are not saved to a backend server. Fix this situation.
 
 ReactDOM.render(<App />, document.getElementById("root"));

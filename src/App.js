@@ -11,9 +11,9 @@ const App = () => {
   const [filterValue, setFilter] = useState("");
 
   const hook = () => {
-    axios.get("http://localhost:3001/persons").then((res) => {
-      setPersons(res.data);
-    });
+    axios
+      .get("http://localhost:3001/persons")
+      .then((res) => setPersons(res.data));
   };
 
   useEffect(hook, []);
@@ -26,18 +26,19 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault();
     const allFriends = [...persons];
-    const checkIfExists = () => {
+    const checkIfAExists = () => {
       return allFriends.every((person) => {
         return person.name !== newName;
       });
     };
 
-    if (!checkIfExists()) {
+    if (!checkIfAExists()) {
       alert(`${newName} is already added to phonebook`);
       return;
     }
 
     const newFriend = { name: newName, phone: newPhone };
+
     setPersons(allFriends.concat(newFriend));
     setNewName("");
     setPhone("");

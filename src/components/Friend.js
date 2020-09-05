@@ -1,9 +1,9 @@
 import React from "react";
 
-const Friend = ({ name, phone, id }) => {
+const Friend = ({ person }) => {
   return (
-    <li key={id}>
-      {name}: {phone}
+    <li>
+      {person.name}: {person.phone}
     </li>
   );
 };
