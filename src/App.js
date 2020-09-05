@@ -3,6 +3,7 @@ import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
 import Friends from "./components/Friends";
 import axios from "axios";
+import personService from "./services/personService";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -11,9 +12,7 @@ const App = () => {
   const [filterValue, setFilter] = useState("");
 
   const hook = () => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then((res) => setPersons(res.data));
+    personService.getData().then((res) => setPersons(res.data));
   };
 
   useEffect(hook, []);
@@ -39,7 +38,7 @@ const App = () => {
 
     const newFriend = { name: newName, phone: newPhone };
 
-    axios.post("http://localhost:3001/persons", newFriend).then((res) => {
+    personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
       setNewName("");
       setPhone("");
