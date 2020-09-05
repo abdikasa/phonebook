@@ -5,8 +5,11 @@ const Friends = ({ filterFriends }) => {
   return (
     <ul>
       {filterFriends.map((person) => {
-        console.log(person);
-        return <Friend person={person}></Friend>;
+        return (
+          <div key={person.id}>
+            <Friend person={person}></Friend>
+          </div>
+        );
       })}
     </ul>
   );

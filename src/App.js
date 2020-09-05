@@ -39,9 +39,11 @@ const App = () => {
 
     const newFriend = { name: newName, phone: newPhone };
 
-    setPersons(allFriends.concat(newFriend));
-    setNewName("");
-    setPhone("");
+    axios.post("http://localhost:3001/persons", newFriend).then((res) => {
+      setPersons(allFriends.concat(res.data));
+      setNewName("");
+      setPhone("");
+    });
   };
 
   return (
