@@ -37,9 +37,6 @@ const App = () => {
     }
 
     const newFriend = { name: newName, phone: newPhone };
-
-    const tester = (name) => console.log(name);
-
     personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
       setNewName("");
