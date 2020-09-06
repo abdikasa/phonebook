@@ -1,10 +1,13 @@
 import React from "react";
 
-const Friend = ({ person }) => {
+const Friend = ({ person, deleteFriend }) => {
   return (
-    <li>
-      {person.name}: {person.phone}
-    </li>
+    <div>
+      <li>
+        {person.name}: {person.phone}
+        <button onClick={() => deleteFriend(person)}>delete friend</button>
+      </li>
+    </div>
   );
 };
 

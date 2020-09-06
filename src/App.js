@@ -38,11 +38,26 @@ const App = () => {
 
     const newFriend = { name: newName, phone: newPhone };
 
+    const tester = (name) => console.log(name);
+
     personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
       setNewName("");
       setPhone("");
     });
+  };
+
+  const deleteFriend = ({ name, id }) => {
+    const input = window.confirm(`Delete ${name}.`);
+
+    if (input) {
+      personService
+        .goodbye(id)
+        .then(() => {
+          setPersons(persons.filter((person) => person.id !== id));
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -58,7 +73,10 @@ const App = () => {
         newPhone={newPhone}
       ></AddForm>
       <h2>Numbers</h2>
-      <Friends filterFriends={filterFriends}></Friends>
+      <Friends
+        filterFriends={filterFriends}
+        deleteFriend={deleteFriend}
+      ></Friends>
     </div>
   );
 };

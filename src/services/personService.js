@@ -9,8 +9,11 @@ const addPerson = (person) => axios.post(baseUrl, person);
 
 const update = (id, person) => axios.put(`${baseUrl}/${id}`, person);
 
+const goodbye = (id) => axios.delete(`${baseUrl}/${id}`);
+
 export default {
   getData,
   addPerson,
   update,
+  goodbye,
 };
