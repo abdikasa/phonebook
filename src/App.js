@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
 import Friends from "./components/Friends";
-import axios from "axios";
 import personService from "./services/personService";
 
 const App = () => {
@@ -31,12 +30,27 @@ const App = () => {
       });
     };
 
+    const newFriend = { name: newName, phone: newPhone };
+
     if (!checkIfAExists()) {
-      alert(`${newName} is already added to phonebook`);
+      const id = allFriends.filter((friend) => friend.name === newName)[0].id;
+      console.log(id);
+      const condition = window.confirm(
+        `${newName} is already added to phonebook, replace the old number with a new one?`
+      );
+
+      if (condition) {
+        personService.updatePhone(id, newFriend).then((res) => {
+          setPersons(
+            allFriends.map((friend) =>
+              friend.name === res.name ? res : friend
+            )
+          );
+        });
+      }
       return;
     }
 
-    const newFriend = { name: newName, phone: newPhone };
     personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
       setNewName("");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -24,7 +24,7 @@ import App from "./App";
 
 // You can make an HTTP DELETE request with the axios library in the same way that we make all of the other requests.
 
-// 2.18*: Phonebook step10 ------STARTING
+// 2.18*: Phonebook step10 ----- FINISHED
 // Change the functionality so that if a number is added to an already existing user, the new number will replace the old number. It's recommended to use the HTTP PUT method for updating the phone number.
 
 // If the person's information is already in the phonebook, the application can confirm the action from the user
