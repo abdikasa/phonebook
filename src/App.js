@@ -3,12 +3,14 @@ import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
 import Friends from "./components/Friends";
 import personService from "./services/personService";
+import Notification from "./components/Notifcation";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newPhone, setPhone] = useState("");
   const [filterValue, setFilter] = useState("");
+  const [message, setMessage] = useState("");
 
   const hook = () => {
     personService.getData().then((res) => setPersons(res.data));
@@ -34,7 +36,6 @@ const App = () => {
 
     if (!checkIfAExists()) {
       const id = allFriends.filter((friend) => friend.name === newName)[0].id;
-      console.log(id);
       const condition = window.confirm(
         `${newName} is already added to phonebook, replace the old number with a new one?`
       );
@@ -74,6 +75,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message}></Notification>
       <Filter setFilter={setFilter} filterValue={filterValue}></Filter>
       <h2>add a new</h2>
       <AddForm
