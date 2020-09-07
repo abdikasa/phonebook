@@ -35,14 +35,14 @@ const App = () => {
     const newFriend = { name: newName, phone: newPhone };
 
     if (!checkIfAExists()) {
-      const id = allFriends.filter((friend) => friend.name === newName)[0].id;
+      const id = allFriends.filter((friend) => friend.name === newName)[0];
       const condition = window.confirm(
         `${newName} is already added to phonebook, replace the old number with a new one?`
       );
 
       if (condition) {
         personService
-          .updatePhone(id, newFriend)
+          .updatePhone(id.id, newFriend)
           .then((res) => {
             setPersons(
               allFriends.map((friend) =>
@@ -53,9 +53,9 @@ const App = () => {
             setMessage(`Phone number for ${res.name} has changed`);
           })
           .catch((err) => {
-            setMessage(`${err}`);
+            setMessage(`${err}\n. ${id.name} has already been deleted.`);
             setTimeout(() => setMessage(""), 3000);
-            setPersons(persons.filter((person) => person.id !== id));
+            setPersons(persons.filter((person) => person.id !== id.id));
           });
         setNewName("");
         setPhone("");
