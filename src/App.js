@@ -11,6 +11,7 @@ const App = () => {
   const [newPhone, setPhone] = useState("");
   const [filterValue, setFilter] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const hook = () => {
     personService.getData().then((res) => setPersons(res.data));
@@ -53,6 +54,7 @@ const App = () => {
             setMessage(`Phone number for ${res.name} has changed`);
           })
           .catch((err) => {
+            setError("some error");
             setMessage(`${err}\n. ${id.name} has already been deleted.`);
             setTimeout(() => setMessage(""), 3000);
             setPersons(persons.filter((person) => person.id !== id.id));
@@ -89,7 +91,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message}></Notification>
+      <Notification
+        message={message}
+        style={error === "" ? "" : "error"}
+      ></Notification>
       <Filter setFilter={setFilter} filterValue={filterValue}></Filter>
       <h2>add a new</h2>
       <AddForm
