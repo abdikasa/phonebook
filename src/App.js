@@ -41,21 +41,27 @@ const App = () => {
       );
 
       if (condition) {
-        personService.updatePhone(id, newFriend).then((res) => {
-          setPersons(
-            allFriends.map((friend) =>
-              friend.name === res.name ? res : friend
-            )
-          );
-          setTimeout(() => setMessage(``), 3000);
-          setMessage(`Phone number for ${res.name} has changed`);
-          setNewName("");
-          setPhone("");
-        });
+        personService
+          .updatePhone(id, newFriend)
+          .then((res) => {
+            setPersons(
+              allFriends.map((friend) =>
+                friend.name === res.name ? res : friend
+              )
+            );
+            setTimeout(() => setMessage(``), 3000);
+            setMessage(`Phone number for ${res.name} has changed`);
+          })
+          .catch((err) => {
+            setMessage(`${err}`);
+            setTimeout(() => setMessage(""), 3000);
+            setPersons(persons.filter((person) => person.id !== id));
+          });
+        setNewName("");
+        setPhone("");
       }
       return;
     }
-
     personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
       setMessage(`${res.data.name} has been added to contacts!`);
