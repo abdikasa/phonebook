@@ -47,6 +47,9 @@ const App = () => {
               friend.name === res.name ? res : friend
             )
           );
+          setMessage(`Phone number for ${res.name} has changed`);
+          setNewName("");
+          setPhone("");
         });
       }
       return;
