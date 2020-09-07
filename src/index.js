@@ -6,7 +6,7 @@ import App from "./App";
 //I deleted teh instructions for 2.11 to 2.18.
 //You can find it in older commits of the app.
 
-// 2.19: Phonebook  ---STARTING
+// 2.19: Phonebook  --- FINISHED
 // Use the improved error message example from part 2 as a guide to show a notification that lasts for a few seconds after a successful operation is executed (a person is added or a number is changed):
 
 // 2.20*: Phonebook

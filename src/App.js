@@ -47,6 +47,7 @@ const App = () => {
               friend.name === res.name ? res : friend
             )
           );
+          setTimeout(() => setMessage(``), 3000);
           setMessage(`Phone number for ${res.name} has changed`);
           setNewName("");
           setPhone("");
@@ -57,8 +58,10 @@ const App = () => {
 
     personService.addPerson(newFriend).then((res) => {
       setPersons(allFriends.concat(res.data));
+      setMessage(`${res.data.name} has been added to contacts!`);
       setNewName("");
       setPhone("");
+      setTimeout(() => setMessage(``), 3000);
     });
   };
 
@@ -70,6 +73,8 @@ const App = () => {
         .goodbye(id)
         .then(() => {
           setPersons(persons.filter((person) => person.id !== id));
+          setMessage(`Deleted ${name}`);
+          setTimeout(() => setMessage(""), 3000);
         })
         .catch((err) => console.log(err));
     }
